@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAFFLE DAWGS - Best Waffles in School! 🧇</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --butter-yellow: #FFD93D;
-            --waffle-brown: #D97941;
-            --syrup-purple: #8B4789;
-            --cream-white: #FFF8E8;
-            --berry-red: #E63946;
-            --mint-green: #06A77D;
+            --primary: #FF6600;
+            --secondary: #FF8800;
+            --accent: #FFAA00;
+            --orange-bright: #FF6600;
+            --orange-light: #FF9933;
+            --orange-dark: #FF5500;
+            --green: #2ECC71;
+            --blue: #3498DB;
+            --dark: #2C3E50;
+            --light: #FFF8F0;
         }
 
         * {
@@ -21,74 +25,113 @@
             box-sizing: border-box;
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
-            font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(135deg, var(--cream-white) 0%, #FFE5B4 100%);
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FFEFCC 0%, #FFE4B5 50%, #FFD7A3 100%);
+            color: var(--dark);
             overflow-x: hidden;
         }
 
-        /* Floating waffle decorations */
-        .waffle-bg {
+        /* Decorative elements */
+        .bg-decoration {
             position: fixed;
-            font-size: 80px;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-            z-index: 0;
+            font-size: 120px;
+            opacity: 0.05;
             pointer-events: none;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .waffle-1 { top: 10%; left: 10%; animation-delay: 0s; }
-        .waffle-2 { top: 60%; right: 15%; animation-delay: 3s; }
-        .waffle-3 { bottom: 20%; left: 20%; animation-delay: 6s; }
-        .waffle-4 { top: 40%; right: 30%; animation-delay: 9s; }
+        .dec-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .dec-2 { top: 50%; right: 10%; animation-delay: 2s; }
+        .dec-3 { bottom: 15%; left: 15%; animation-delay: 4s; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
-        }
-
-        /* Header Section */
+        /* Header */
         header {
             position: relative;
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, var(--butter-yellow), var(--waffle-brown));
-            border-bottom: 8px solid var(--syrup-purple);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: slideDown 0.8s ease-out;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #FF6600, #FF8800, #FFAA00);
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+            box-shadow: 0 10px 40px rgba(255,102,0,0.3);
+            overflow: hidden;
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
         }
 
         h1 {
-            font-family: 'Patrick Hand', cursive;
-            font-size: 4em;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 900;
             color: white;
-            text-shadow: 4px 4px 0 var(--syrup-purple), 
-                         8px 8px 0 rgba(0,0,0,0.2);
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
             margin-bottom: 10px;
-            animation: bounce 1s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .tagline {
-            font-size: 1.5em;
-            color: var(--cream-white);
-            font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 1.2em;
+            color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Main Container */
+        /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
@@ -98,31 +141,33 @@
         /* Welcome Section */
         .welcome {
             background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             margin-bottom: 50px;
-            border: 5px solid var(--butter-yellow);
-            transform: rotate(-1deg);
-            animation: fadeIn 1s ease-out 0.3s both;
+            border-left: 6px solid #FF6600;
+            animation: slideInLeft 0.8s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px) rotate(-1deg); }
-            to { opacity: 1; transform: translateY(0) rotate(-1deg); }
+        .welcome:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.15);
         }
 
         .welcome h2 {
-            color: var(--waffle-brown);
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-family: 'Patrick Hand', cursive;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            color: #FF6600;
+            margin-bottom: 18px;
+            font-weight: 900;
         }
 
         .welcome p {
-            font-size: 1.2em;
-            line-height: 1.6;
+            font-size: 1.1em;
+            line-height: 1.7;
             color: #555;
+            font-weight: 500;
         }
 
         /* Menu Section */
@@ -132,104 +177,123 @@
 
         .menu h2 {
             text-align: center;
-            font-size: 3em;
-            color: var(--syrup-purple);
-            margin-bottom: 40px;
-            font-family: 'Patrick Hand', cursive;
-            text-shadow: 3px 3px 0 var(--butter-yellow);
-            animation: fadeIn 1s ease-out 0.5s both;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #FF6600;
+            margin-bottom: 35px;
+            font-weight: 900;
+            text-shadow: 2px 2px 0 #FFAA00;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
         .menu-item {
             background: white;
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 4px solid var(--butter-yellow);
-            animation: popIn 0.6s ease-out both;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out both;
         }
 
-        .menu-item:nth-child(1) { animation-delay: 0.7s; }
-        .menu-item:nth-child(2) { animation-delay: 0.85s; }
-        .menu-item:nth-child(3) { animation-delay: 1s; }
-        .menu-item:nth-child(4) { animation-delay: 1.15s; }
-        .menu-item:nth-child(5) { animation-delay: 1.3s; }
-        .menu-item:nth-child(6) { animation-delay: 1.45s; }
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
 
-        .menu-item.special {
-            border: 4px solid var(--berry-red);
-            background: linear-gradient(135deg, #fff 0%, #ffe0e0 100%);
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
         }
 
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+        .menu-item:hover::before {
+            left: 100%;
         }
 
         .menu-item:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .menu-item h3 {
-            font-size: 1.8em;
-            color: var(--waffle-brown);
-            margin-bottom: 15px;
-            font-family: 'Patrick Hand', cursive;
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(255,102,0,0.3);
+            border-color: var(--orange-bright);
         }
 
         .menu-item .emoji {
             font-size: 3em;
-            margin-bottom: 15px;
             display: block;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .emoji {
+            transform: scale(1.2) rotate(10deg);
+            animation: pulse 0.6s ease-in-out infinite;
+        }
+
+        .menu-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
         .menu-item p {
-            font-size: 1.1em;
+            font-size: 1em;
             color: #666;
             line-height: 1.5;
+            margin-bottom: 15px;
         }
 
         .price {
             display: inline-block;
-            background: var(--mint-green);
+            background: linear-gradient(135deg, #FF6600, #FF8800);
             color: white;
-            padding: 8px 20px;
+            padding: 10px 22px;
             border-radius: 20px;
             font-size: 1.3em;
-            font-weight: 700;
-            margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-weight: 800;
+            margin-top: 12px;
+            box-shadow: 0 6px 20px rgba(255,102,0,0.4);
         }
 
         .buy-button {
             display: block;
             width: 100%;
             margin-top: 15px;
-            padding: 12px 20px;
-            background: var(--berry-red);
+            padding: 13px 25px;
+            background: linear-gradient(135deg, #FF6600, #FF8800);
             color: white;
             border: none;
-            border-radius: 15px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.2em;
-            font-weight: 700;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(255,102,0,0.3);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .buy-button:hover {
-            background: var(--syrup-purple);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 35px rgba(255,102,0,0.5);
+            background: linear-gradient(135deg, #FF5500, #FF6600);
         }
 
         .buy-button:active {
@@ -238,308 +302,162 @@
 
         /* Order Section */
         .order-section {
-            background: white;
+            background: linear-gradient(135deg, rgba(255,102,0,0.1), rgba(255,136,0,0.1));
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
             margin-bottom: 50px;
-            border: 5px solid var(--mint-green);
-            animation: fadeIn 1s ease-out 1.6s both;
+            border: 3px solid var(--orange-bright);
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .order-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
             text-align: center;
-            font-size: 3em;
-            color: var(--mint-green);
+            color: var(--orange-bright);
             margin-bottom: 30px;
-            font-family: 'Patrick Hand', cursive;
-            text-shadow: 3px 3px 0 var(--butter-yellow);
+            font-weight: 900;
         }
 
-        .order-box {
+        .contact-info {
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .delivery-info {
-            text-align: center;
-            background: linear-gradient(135deg, var(--butter-yellow), var(--waffle-brown));
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            color: white;
-        }
-
-        .delivery-info .emoji {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .delivery-info h3 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            font-family: 'Patrick Hand', cursive;
-        }
-
-        .delivery-info p {
-            font-size: 1.2em;
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
         .contact-info h3 {
-            font-size: 1.8em;
-            color: var(--waffle-brown);
-            margin-bottom: 20px;
-            font-family: 'Patrick Hand', cursive;
+            font-size: 1.6em;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
 
         .phone-button, .whatsapp-button, .sms-button, .instagram-button {
             display: block;
             text-decoration: none;
-            font-size: 1.3em;
+            font-size: 1.2em;
             font-weight: 700;
-            padding: 15px 30px;
-            border-radius: 15px;
+            padding: 14px 30px;
+            border-radius: 12px;
             margin: 15px 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .phone-button {
-            background: var(--mint-green);
+            background: linear-gradient(135deg, var(--green), #27AE60);
             color: white;
         }
 
         .whatsapp-button {
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
         }
 
         .sms-button {
-            background: var(--syrup-purple);
+            background: linear-gradient(135deg, var(--purple), #8E44AD);
             color: white;
         }
 
         .instagram-button {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             color: white;
         }
 
         .phone-button:hover, .whatsapp-button:hover, .sms-button:hover, .instagram-button:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         }
 
         .order-note {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 5px solid var(--berry-red);
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-top: 30px;
+            border-left: 5px solid #FF6600;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
 
         .order-note p {
-            font-size: 1.1em;
-            color: #555;
+            font-size: 1.05em;
             margin: 10px 0;
-            line-height: 1.6;
+            font-weight: 600;
+            color: #555;
         }
 
-        /* Fun Facts Section */
+        /* Fun Facts */
         .fun-facts {
-            background: linear-gradient(135deg, var(--berry-red), var(--syrup-purple));
-            color: white;
+            background: linear-gradient(135deg, rgba(255,102,0,0.15), rgba(255,136,0,0.15));
             padding: 40px;
-            border-radius: 30px;
+            border-radius: 20px;
+            border: 3px solid var(--orange-bright);
             margin-bottom: 50px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            animation: fadeIn 1s ease-out 1.3s both;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .fun-facts h2 {
-            font-size: 2.5em;
-            margin-bottom: 25px;
-            font-family: 'Patrick Hand', cursive;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
             text-align: center;
+            color: var(--orange-bright);
+            margin-bottom: 25px;
+            font-weight: 900;
         }
 
         .fun-facts ul {
             list-style: none;
-            font-size: 1.2em;
+            font-size: 1.1em;
             line-height: 2;
+        }
+
+        .fun-facts li {
+            padding: 14px;
+            margin: 12px 0;
+            background: white;
+            border-radius: 12px;
+            border-left: 4px solid #FF6600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-weight: 600;
+        }
+
+        .fun-facts li:hover {
+            transform: translateX(15px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .fun-facts li:before {
             content: "🧇 ";
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 1.3em;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 20px;
-            background: var(--waffle-brown);
+            padding: 35px 20px;
+            background: linear-gradient(135deg, var(--dark), #34495E);
             color: white;
-            font-size: 1.2em;
-            margin-top: 50px;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
         }
 
         footer p {
+            font-size: 1.1em;
             margin: 10px 0;
+            font-weight: 600;
         }
 
         .heart {
-            color: var(--berry-red);
-            animation: heartbeat 1.5s ease-in-out infinite;
+            color: #FF6600;
+            font-size: 1.3em;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Built-in Chat Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            max-width: 90vw;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            z-index: 1000;
-            overflow: hidden;
-            animation: slideUp 0.5s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, var(--mint-green), var(--waffle-brown));
-            color: white;
-            padding: 15px 20px;
-            font-size: 1.2em;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .chat-header:hover {
-            background: linear-gradient(135deg, var(--waffle-brown), var(--mint-green));
-        }
-
-        .chat-body {
-            display: none;
-            max-height: 400px;
-            background: #f8f9fa;
-        }
-
-        .chat-messages {
-            padding: 15px;
-            max-height: 200px;
-            overflow-y: auto;
-            background: white;
-        }
-
-        .bot-message, .user-message {
-            margin-bottom: 15px;
-            padding: 10px 15px;
-            border-radius: 15px;
-            animation: messageSlide 0.3s ease-out;
-        }
-
-        @keyframes messageSlide {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .bot-message {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            border-left: 4px solid var(--mint-green);
-        }
-
-        .user-message {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border-left: 4px solid var(--waffle-brown);
-            text-align: right;
-        }
-
-        .bot-message strong, .user-message strong {
-            color: var(--waffle-brown);
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9em;
-        }
-
-        .bot-message p, .user-message p {
-            margin: 0;
-            color: #333;
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            background: white;
-            border-top: 2px solid #e0e0e0;
-        }
-
-        .chat-name, .chat-phone, .chat-message {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
-        }
-
-        .chat-name:focus, .chat-phone:focus, .chat-message:focus {
-            outline: none;
-            border-color: var(--mint-green);
-        }
-
-        .chat-message {
-            min-height: 60px;
-            resize: vertical;
-        }
-
-        .send-button {
-            width: 100%;
-            padding: 12px;
-            background: var(--mint-green);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .send-button:hover {
-            background: var(--waffle-brown);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-
-        .send-button:active {
-            transform: translateY(0);
-        }
-
-        /* Order Modal */
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -548,149 +466,486 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.75);
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease-out;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             background: white;
-            padding: 40px;
+            padding: 50px;
             border-radius: 25px;
-            max-width: 500px;
+            max-width: 550px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
             position: relative;
+            animation: fadeInUp 0.4s ease-out;
         }
 
         .modal-close {
             position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 35px;
+            right: 25px;
+            top: 20px;
+            font-size: 40px;
             font-weight: bold;
             color: #999;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .modal-close:hover {
-            color: var(--berry-red);
+            color: #FF6600;
+            transform: rotate(90deg);
         }
 
         .modal h2 {
-            color: var(--waffle-brown);
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #FF6600;
+            margin-bottom: 25px;
             text-align: center;
-            font-family: 'Patrick Hand', cursive;
+            font-weight: 900;
         }
 
         .modal-waffle-info {
-            background: linear-gradient(135deg, var(--butter-yellow), var(--waffle-brown));
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
+            background: linear-gradient(135deg, #FF6600, #FF8800);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
             text-align: center;
+            color: white;
+            box-shadow: 0 8px 25px rgba(255,102,0,0.4);
         }
 
         .modal-waffle-info p {
-            color: white;
             font-size: 1.3em;
             margin: 10px 0;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .modal form input {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 2px solid #e0e0e0;
+            padding: 16px;
+            margin-bottom: 18px;
+            border: 2px solid #ddd;
             border-radius: 12px;
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 1.1em;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .modal form input:focus {
             outline: none;
-            border-color: var(--mint-green);
+            border-color: #FF6600;
+            box-shadow: 0 0 15px rgba(255,102,0,0.3);
         }
 
         .modal-submit {
             width: 100%;
-            padding: 15px;
-            background: var(--mint-green);
+            padding: 18px;
+            background: linear-gradient(135deg, #FF6600, #FF8800);
             color: white;
             border: none;
             border-radius: 12px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.3em;
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 8px 25px rgba(255,102,0,0.4);
         }
 
         .modal-submit:hover {
-            background: var(--waffle-brown);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255,102,0,0.5);
         }
 
         .modal-note {
             text-align: center;
-            color: #666;
             font-size: 1em;
-            margin-top: 15px;
-        }
-
-        /* Flavour Selection Modal */
-        .flavour-modal {
-            max-width: 400px;
+            margin-top: 20px;
+            color: #666;
+            font-weight: 600;
         }
 
         .flavour-options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 18px;
+            margin-top: 25px;
         }
 
         .flavour-btn {
-            padding: 20px;
-            font-size: 1.5em;
-            font-weight: 700;
-            border: 3px solid var(--waffle-brown);
+            padding: 22px;
+            font-size: 1.6em;
+            font-weight: 800;
+            border: 3px solid #FF6600;
             border-radius: 15px;
-            background: linear-gradient(135deg, var(--butter-yellow), var(--cream-white));
-            color: var(--waffle-brown);
+            background: white;
+            color: #FF6600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Fredoka', sans-serif;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
 
         .flavour-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, var(--waffle-brown), var(--butter-yellow));
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,102,0,0.4);
+            background: linear-gradient(135deg, #FF6600, #FF8800);
             color: white;
         }
 
-        .flavour-btn:active {
-            transform: translateY(0);
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 360px;
+            max-width: 90vw;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            z-index: 1000;
+            overflow: hidden;
+            border: 3px solid #FF6600;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #FF6600, #FF8800);
+            color: white;
+            padding: 18px 20px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chat-header:hover {
+            background: linear-gradient(135deg, #FF5500, #FF6600);
+        }
+
+        .chat-body {
+            display: none;
+            background: #f8f9fa;
+        }
+
+        .chat-messages {
+            padding: 20px;
+            max-height: 250px;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .bot-message {
+            background: linear-gradient(135deg, rgba(255,102,0,0.1), rgba(255,136,0,0.1));
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #FF6600;
+        }
+
+        .bot-message strong {
+            color: #FF6600;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            background: white;
+            border-top: 2px solid #eee;
+        }
+
+        .chat-name, .chat-phone, .chat-message {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .chat-name:focus, .chat-phone:focus, .chat-message:focus {
+            outline: none;
+            border-color: #FF6600;
+            box-shadow: 0 0 10px rgba(255,102,0,0.3);
+        }
+
+        .chat-message {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        .send-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #FF6600, #FF8800);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,102,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            /* Make everything more compact on mobile */
+            body {
+                font-size: 14px;
+            }
+
+            h1 { 
+                font-size: 2em; 
+            }
+            
+            .tagline { 
+                font-size: 1em; 
+            }
+
+            header {
+                padding: 30px 15px;
+            }
+
+            .container {
+                padding: 25px 15px;
+            }
+
+            .welcome {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .welcome h2 { 
+                font-size: 1.6em; 
+            }
+
+            .welcome p {
+                font-size: 0.95em;
+                line-height: 1.6;
+            }
+
+            .menu {
+                margin-bottom: 30px;
+            }
+
+            .menu h2 { 
+                font-size: 1.8em;
+                margin-bottom: 25px;
+            }
+
+            .menu-grid { 
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .menu-item {
+                padding: 20px;
+            }
+
+            .menu-item .emoji {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+            }
+
+            .menu-item h3 {
+                font-size: 1.4em;
+                margin-bottom: 8px;
+            }
+
+            .menu-item p {
+                font-size: 0.9em;
+                margin-bottom: 12px;
+            }
+
+            .price {
+                font-size: 1.1em;
+                padding: 8px 18px;
+                margin-top: 10px;
+            }
+
+            .buy-button {
+                font-size: 1em;
+                padding: 12px 20px;
+                margin-top: 12px;
+            }
+
+            .order-section {
+                padding: 25px 18px;
+                margin-bottom: 30px;
+            }
+
+            .order-section h2 { 
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .contact-info h3 {
+                font-size: 1.3em;
+                margin-bottom: 18px;
+            }
+
+            .phone-button, .whatsapp-button, .sms-button, .instagram-button {
+                font-size: 1.05em;
+                padding: 12px 20px;
+                margin: 10px 0;
+            }
+
+            .order-note {
+                padding: 18px;
+                margin-top: 25px;
+            }
+
+            .order-note p {
+                font-size: 0.95em;
+                margin: 8px 0;
+            }
+
+            .fun-facts {
+                padding: 25px 18px;
+                margin-bottom: 30px;
+            }
+
+            .fun-facts h2 { 
+                font-size: 1.7em;
+                margin-bottom: 18px;
+            }
+
+            .fun-facts ul {
+                font-size: 0.95em;
+                line-height: 1.8;
+            }
+
+            .fun-facts li {
+                padding: 12px;
+                margin: 8px 0;
+            }
+
+            footer {
+                padding: 25px 15px;
+            }
+
+            footer p {
+                font-size: 0.95em;
+                margin: 8px 0;
+            }
+
+            /* Modal adjustments for mobile */
+            .modal-content {
+                padding: 25px 20px;
+                width: 92%;
+            }
+
+            .modal h2 {
+                font-size: 1.6em;
+                margin-bottom: 18px;
+            }
+
+            .modal-waffle-info {
+                padding: 18px;
+                margin-bottom: 20px;
+            }
+
+            .modal-waffle-info p {
+                font-size: 1.05em;
+                margin: 8px 0;
+            }
+
+            .modal form input {
+                font-size: 1em;
+                padding: 12px;
+                margin-bottom: 14px;
+            }
+
+            .modal-submit {
+                font-size: 1.1em;
+                padding: 13px;
+            }
+
+            .modal-note {
+                font-size: 0.85em;
+                margin-top: 15px;
+            }
+
+            .flavour-btn {
+                font-size: 1.2em;
+                padding: 16px;
+                gap: 15px;
+            }
+
+            /* Chat widget for mobile */
+            .chat-widget {
+                width: 90vw;
+                bottom: 12px;
+                right: 5vw;
+            }
+
+            .chat-header {
+                font-size: 1.05em;
+                padding: 14px;
+            }
+
+            .chat-messages {
+                padding: 12px;
+                max-height: 180px;
+            }
+
+            .bot-message {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .bot-message strong {
+                font-size: 0.9em;
+                margin-bottom: 6px;
+            }
+
+            .bot-message p {
+                font-size: 0.85em;
+            }
+
+            .chat-input-area {
+                padding: 12px;
+            }
+
+            .chat-name, .chat-phone {
+                font-size: 0.95em;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .chat-message {
+                font-size: 0.95em;
+                min-height: 55px;
+                padding: 10px;
+            }
+
+            .send-button {
+                font-size: 1em;
+                padding: 11px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Floating waffle decorations -->
-    <div class="waffle-bg waffle-1">🧇</div>
-    <div class="waffle-bg waffle-2">🧇</div>
-    <div class="waffle-bg waffle-3">🧇</div>
-    <div class="waffle-bg waffle-4">🧇</div>
+    <!-- Background Decoration -->
+    <div class="bg-decoration dec-1">🧇</div>
+    <div class="bg-decoration dec-2">🧇</div>
+    <div class="bg-decoration dec-3">🧇</div>
 
     <header>
         <h1>🧇 WAFFLE DAWGS 🧇</h1>
@@ -751,12 +1006,12 @@
                     <button class="buy-button" onclick="buyWaffle('Custom Waffle', 100)">Buy Now 🛒</button>
                 </div>
 
-                <div class="menu-item special">
+                <div class="menu-item">
                     <span class="emoji">🔥</span>
                     <h3>2 Large Waffles</h3>
                     <p><strong>SPECIAL DISCOUNT!</strong> Perfect for sharing<br>
                     <span style="text-decoration: line-through; color: #999;">₹70</span></p>
-                    <span class="price" style="background: var(--berry-red);">₹50 ONLY!</span>
+                    <span class="price">₹50 ONLY!</span>
                     <button class="buy-button" onclick="buyWaffle('2 Large Waffles (DISCOUNT DEAL)', 50)">Buy Now 🛒</button>
                 </div>
             </div>
@@ -765,12 +1020,6 @@
         <section class="order-section">
             <h2>📱 Order Now! 📱</h2>
             <div class="order-box">
-                <div class="delivery-info">
-                    <span class="emoji">💰</span>
-                    <h3>Cash on Delivery Available!</h3>
-                    <p>Pay when you receive your delicious waffles at your doorstep!</p>
-                </div>
-                
                 <div class="contact-info">
                     <h3>Contact Us to Order:</h3>
                     <a href="tel:+919840142703" class="phone-button">
@@ -792,7 +1041,7 @@
                     <p>1️⃣ Before Prayer Time</p>
                     <p>2️⃣ Snacks Time</p>
                     <p>3️⃣ Lunch Time</p>
-                    <p style="margin-top: 15px;">📋 <strong>HOW IT WORKS:</strong></p>
+                    <p style="margin-top: 20px;">📋 <strong>How It Works:</strong></p>
                     <p>1. Order today via WhatsApp</p>
                     <p>2. Bring cash tomorrow at school</p>
                     <p>3. Get your waffle the day after!</p>
@@ -842,9 +1091,7 @@
         <div class="modal-content flavour-modal">
             <span class="modal-close" onclick="closeFlavourModal()">&times;</span>
             <h2 id="flavourTitle">Choose Your Flavour:</h2>
-            <div id="flavourOptions" class="flavour-options">
-                <!-- Buttons will be added by JavaScript -->
-            </div>
+            <div id="flavourOptions" class="flavour-options"></div>
         </div>
     </div>
 
@@ -881,16 +1128,11 @@
             selectedPrice = price;
             waffleType = waffleName;
             
-            // Check if this is Kinder Joy waffle (ask with or without flavour)
             if (waffleName === 'Kinder Joy Waffle') {
                 showKinderJoyChoice();
-            } 
-            // Check if this is Custom Waffle (3 options)
-            else if (waffleName === 'Custom Waffle') {
+            } else if (waffleName === 'Custom Waffle') {
                 showFlavourSelection('custom');
-            }
-            // All other waffles (vanilla or chocolate only)
-            else {
+            } else {
                 showFlavourSelection('regular');
             }
         }
@@ -923,7 +1165,6 @@
                 document.getElementById('flavourModal').style.display = 'none';
                 showOrderForm();
             } else {
-                // Ask for vanilla or chocolate
                 selectedPrice = 90;
                 document.getElementById('flavourModal').style.display = 'none';
                 showFlavourSelection('kinder-with-flavour');
@@ -943,7 +1184,6 @@
                 `;
             } else if (type === 'custom') {
                 flavourTitle.textContent = `Choose Your Flavour for ${selectedWaffle}:`;
-                // Custom waffle has 3 options
                 flavourOptions.innerHTML = `
                     <button onclick="selectFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
                     <button onclick="selectFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
@@ -951,7 +1191,6 @@
                 `;
             } else {
                 flavourTitle.textContent = `Choose Your Flavour for ${selectedWaffle}:`;
-                // Regular waffles have 2 options
                 flavourOptions.innerHTML = `
                     <button onclick="selectFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
                     <button onclick="selectFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
@@ -999,13 +1238,10 @@
                 return;
             }
 
-            // Create WhatsApp message with flavour
             const message = `🧇 *NEW ORDER!*%0A%0A*Customer:* ${name}%0A*Phone:* ${phone}%0A*Order:* ${selectedWaffle}%0A*Flavour:* ${selectedFlavour}%0A*Price:* ₹${selectedPrice}%0A%0A_Payment tomorrow at school, waffle ready day after!_`;
             
-            // Open WhatsApp
             window.open(`https://wa.me/919840142703?text=${message}`, '_blank');
             
-            // Show confirmation and close modal
             alert(`Thanks ${name}! 🧇\n\nYour order:\n${selectedWaffle} (${selectedFlavour})\n₹${selectedPrice}\n\nRemember:\n📋 Bring ₹${selectedPrice} cash TOMORROW at school\n✅ Get your waffle the day after!`);
             
             closeModal();
@@ -1033,18 +1269,15 @@
                 return;
             }
 
-            // Display user message in chat
             const chatMessages = document.getElementById('chatMessages');
             const userMsg = document.createElement('div');
-            userMsg.className = 'user-message';
+            userMsg.className = 'bot-message';
             userMsg.innerHTML = `<strong>You</strong><p>${message}</p>`;
             chatMessages.appendChild(userMsg);
 
-            // Create WhatsApp message
             const whatsappText = `Hi! I'm ${name}%0APhone: ${phone}%0AMessage: ${message}`;
             const whatsappURL = `https://wa.me/919840142703?text=${whatsappText}`;
             
-            // Show confirmation
             setTimeout(() => {
                 const botMsg = document.createElement('div');
                 botMsg.className = 'bot-message';
@@ -1052,13 +1285,11 @@
                 chatMessages.appendChild(botMsg);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
                 
-                // Open WhatsApp after 1 second
                 setTimeout(() => {
                     window.open(whatsappURL, '_blank');
                 }, 1000);
             }, 500);
 
-            // Clear inputs
             document.getElementById('nameInput').value = '';
             document.getElementById('phoneInput').value = '';
             document.getElementById('messageInput').value = '';
@@ -1066,7 +1297,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Allow Enter key to send message
         document.getElementById('messageInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
