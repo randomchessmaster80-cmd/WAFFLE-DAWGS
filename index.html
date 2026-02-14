@@ -755,8 +755,10 @@
                     <p>1️⃣ Before Prayer Time</p>
                     <p>2️⃣ Snacks Time</p>
                     <p>3️⃣ Lunch Time</p>
-                    <p style="margin-top: 15px;">⏰ <strong>IMPORTANT:</strong> Order by 10 PM the day before!</p>
-                    <p>💰 Bring cash when you pick up your waffle tomorrow!</p>
+                    <p style="margin-top: 15px;">📋 <strong>HOW IT WORKS:</strong></p>
+                    <p>1. Order today via WhatsApp</p>
+                    <p>2. Bring cash tomorrow at school</p>
+                    <p>3. Get your waffle the day after!</p>
                 </div>
             </div>
         </section>
@@ -776,7 +778,7 @@
     <footer>
         <p>📦 Pick-up: Before Prayer | Snacks Time | Lunch Time</p>
         <p>Made with <span class="heart">❤️</span> and lots of butter!</p>
-        <p>⏰ Order before 10 PM for next day - Bring cash!</p>
+        <p>📋 Order today → Pay tomorrow → Get waffle day after!</p>
     </footer>
 
     <!-- Order Modal -->
@@ -793,7 +795,7 @@
                 <input type="tel" id="customerPhone" placeholder="Your Phone Number" required>
                 <button type="submit" class="modal-submit">Send Order via WhatsApp 🚀</button>
             </form>
-            <p class="modal-note">📌 Remember: Order by 10 PM | Bring cash tomorrow!</p>
+            <p class="modal-note">📋 Order today → Bring cash tomorrow at school → Get waffle day after!</p>
         </div>
     </div>
 
@@ -847,13 +849,13 @@
             }
 
             // Create WhatsApp message
-            const message = `🧇 *NEW ORDER!*%0A%0A*Customer:* ${name}%0A*Phone:* ${phone}%0A*Order:* ${selectedWaffle}%0A*Price:* ₹${selectedPrice}%0A%0A_Remember: Order by 10 PM for next day pickup!_`;
+            const message = `🧇 *NEW ORDER!*%0A%0A*Customer:* ${name}%0A*Phone:* ${phone}%0A*Order:* ${selectedWaffle}%0A*Price:* ₹${selectedPrice}%0A%0A_Payment tomorrow at school, waffle ready day after!_`;
             
             // Open WhatsApp
             window.open(`https://wa.me/919840142703?text=${message}`, '_blank');
             
             // Show confirmation and close modal
-            alert(`Thanks ${name}! 🧇\n\nYour order for ${selectedWaffle} (₹${selectedPrice}) is being sent to WhatsApp!\n\nRemember:\n✅ Order by 10 PM\n✅ Bring ₹${selectedPrice} cash tomorrow\n✅ Pick up at school!`);
+            alert(`Thanks ${name}! 🧇\n\nYour order for ${selectedWaffle} (₹${selectedPrice}) is being sent to WhatsApp!\n\nRemember:\n📋 Bring ₹${selectedPrice} cash TOMORROW at school\n✅ Get your waffle the day after!`);
             
             closeModal();
         }
