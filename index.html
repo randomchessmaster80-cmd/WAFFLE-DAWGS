@@ -646,6 +646,43 @@
             font-size: 1em;
             margin-top: 15px;
         }
+
+        /* Flavour Selection Modal */
+        .flavour-modal {
+            max-width: 400px;
+        }
+
+        .flavour-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .flavour-btn {
+            padding: 20px;
+            font-size: 1.5em;
+            font-weight: 700;
+            border: 3px solid var(--waffle-brown);
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--butter-yellow), var(--cream-white));
+            color: var(--waffle-brown);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Fredoka', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .flavour-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, var(--waffle-brown), var(--butter-yellow));
+            color: white;
+        }
+
+        .flavour-btn:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -702,7 +739,7 @@
                     <span class="emoji">🍫</span>
                     <h3>Kinder Joy Waffle</h3>
                     <p>Loaded with Kinder Joy chocolate goodness!</p>
-                    <span class="price">₹80</span>
+                    <span class="price">₹80 - ₹90</span>
                     <button class="buy-button" onclick="buyWaffle('Kinder Joy Waffle', 80)">Buy Now 🛒</button>
                 </div>
 
@@ -788,6 +825,7 @@
             <h2>🧇 Order Your Waffle!</h2>
             <div class="modal-waffle-info">
                 <p><strong>Item:</strong> <span id="modalWaffleName"></span></p>
+                <p><strong>Flavour:</strong> <span id="modalFlavour"></span></p>
                 <p><strong>Price:</strong> ₹<span id="modalPrice"></span></p>
             </div>
             <form onsubmit="event.preventDefault(); submitOrder();">
@@ -796,6 +834,17 @@
                 <button type="submit" class="modal-submit">Send Order via WhatsApp 🚀</button>
             </form>
             <p class="modal-note">📋 Order today → Bring cash tomorrow at school → Get waffle day after!</p>
+        </div>
+    </div>
+
+    <!-- Flavour Selection Modal -->
+    <div id="flavourModal" class="modal">
+        <div class="modal-content flavour-modal">
+            <span class="modal-close" onclick="closeFlavourModal()">&times;</span>
+            <h2 id="flavourTitle">Choose Your Flavour:</h2>
+            <div id="flavourOptions" class="flavour-options">
+                <!-- Buttons will be added by JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -824,19 +873,121 @@
     <script>
         let selectedWaffle = '';
         let selectedPrice = 0;
+        let selectedFlavour = '';
+        let waffleType = '';
 
         function buyWaffle(waffleName, price) {
             selectedWaffle = waffleName;
             selectedPrice = price;
+            waffleType = waffleName;
+            
+            // Check if this is Kinder Joy waffle (ask with or without flavour)
+            if (waffleName === 'Kinder Joy Waffle') {
+                showKinderJoyChoice();
+            } 
+            // Check if this is Custom Waffle (3 options)
+            else if (waffleName === 'Custom Waffle') {
+                showFlavourSelection('custom');
+            }
+            // All other waffles (vanilla or chocolate only)
+            else {
+                showFlavourSelection('regular');
+            }
+        }
+
+        function showKinderJoyChoice() {
+            const flavourModal = document.getElementById('flavourModal');
+            const flavourTitle = document.getElementById('flavourTitle');
+            const flavourOptions = document.getElementById('flavourOptions');
+            
+            flavourTitle.textContent = 'Kinder Joy Waffle - Choose Your Style:';
+            
+            flavourOptions.innerHTML = `
+                <button onclick="selectKinderJoy('without')" class="flavour-btn">
+                    🎁 Just Kinder Joy<br>
+                    <span style="font-size: 0.8em;">₹80</span>
+                </button>
+                <button onclick="selectKinderJoy('with')" class="flavour-btn">
+                    🎁 Kinder Joy + Flavour<br>
+                    <span style="font-size: 0.8em;">₹90</span>
+                </button>
+            `;
+            
+            flavourModal.style.display = 'flex';
+        }
+
+        function selectKinderJoy(choice) {
+            if (choice === 'without') {
+                selectedPrice = 80;
+                selectedFlavour = 'Kinder Joy (No extra flavour)';
+                document.getElementById('flavourModal').style.display = 'none';
+                showOrderForm();
+            } else {
+                // Ask for vanilla or chocolate
+                selectedPrice = 90;
+                document.getElementById('flavourModal').style.display = 'none';
+                showFlavourSelection('kinder-with-flavour');
+            }
+        }
+
+        function showFlavourSelection(type) {
+            const flavourModal = document.getElementById('flavourModal');
+            const flavourTitle = document.getElementById('flavourTitle');
+            const flavourOptions = document.getElementById('flavourOptions');
+            
+            if (type === 'kinder-with-flavour') {
+                flavourTitle.textContent = 'Choose Extra Flavour for Kinder Joy:';
+                flavourOptions.innerHTML = `
+                    <button onclick="selectKinderFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
+                    <button onclick="selectKinderFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
+                `;
+            } else if (type === 'custom') {
+                flavourTitle.textContent = `Choose Your Flavour for ${selectedWaffle}:`;
+                // Custom waffle has 3 options
+                flavourOptions.innerHTML = `
+                    <button onclick="selectFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
+                    <button onclick="selectFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
+                    <button onclick="selectFlavour('Kinder Joy')" class="flavour-btn">🎁 Kinder Joy</button>
+                `;
+            } else {
+                flavourTitle.textContent = `Choose Your Flavour for ${selectedWaffle}:`;
+                // Regular waffles have 2 options
+                flavourOptions.innerHTML = `
+                    <button onclick="selectFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
+                    <button onclick="selectFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
+                `;
+            }
+            
+            flavourModal.style.display = 'flex';
+        }
+
+        function selectKinderFlavour(flavour) {
+            selectedFlavour = `Kinder Joy + ${flavour}`;
+            document.getElementById('flavourModal').style.display = 'none';
+            showOrderForm();
+        }
+
+        function selectFlavour(flavour) {
+            selectedFlavour = flavour;
+            document.getElementById('flavourModal').style.display = 'none';
+            showOrderForm();
+        }
+
+        function showOrderForm() {
             document.getElementById('orderModal').style.display = 'flex';
-            document.getElementById('modalWaffleName').textContent = waffleName;
-            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalWaffleName').textContent = selectedWaffle;
+            document.getElementById('modalFlavour').textContent = selectedFlavour;
+            document.getElementById('modalPrice').textContent = selectedPrice;
         }
 
         function closeModal() {
             document.getElementById('orderModal').style.display = 'none';
             document.getElementById('customerName').value = '';
             document.getElementById('customerPhone').value = '';
+        }
+
+        function closeFlavourModal() {
+            document.getElementById('flavourModal').style.display = 'none';
         }
 
         function submitOrder() {
@@ -848,14 +999,14 @@
                 return;
             }
 
-            // Create WhatsApp message
-            const message = `🧇 *NEW ORDER!*%0A%0A*Customer:* ${name}%0A*Phone:* ${phone}%0A*Order:* ${selectedWaffle}%0A*Price:* ₹${selectedPrice}%0A%0A_Payment tomorrow at school, waffle ready day after!_`;
+            // Create WhatsApp message with flavour
+            const message = `🧇 *NEW ORDER!*%0A%0A*Customer:* ${name}%0A*Phone:* ${phone}%0A*Order:* ${selectedWaffle}%0A*Flavour:* ${selectedFlavour}%0A*Price:* ₹${selectedPrice}%0A%0A_Payment tomorrow at school, waffle ready day after!_`;
             
             // Open WhatsApp
             window.open(`https://wa.me/919840142703?text=${message}`, '_blank');
             
             // Show confirmation and close modal
-            alert(`Thanks ${name}! 🧇\n\nYour order for ${selectedWaffle} (₹${selectedPrice}) is being sent to WhatsApp!\n\nRemember:\n📋 Bring ₹${selectedPrice} cash TOMORROW at school\n✅ Get your waffle the day after!`);
+            alert(`Thanks ${name}! 🧇\n\nYour order:\n${selectedWaffle} (${selectedFlavour})\n₹${selectedPrice}\n\nRemember:\n📋 Bring ₹${selectedPrice} cash TOMORROW at school\n✅ Get your waffle the day after!`);
             
             closeModal();
         }
