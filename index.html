@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAFFLE DAWGS - Best Waffles in School! 🧇</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --butter-yellow: #FFD93D;
+            --waffle-brown: #D97941;
+            --syrup-purple: #8B4789;
+            --cream-white: #FFF8E8;
+            --berry-red: #E63946;
+            --mint-green: #06A77D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, var(--cream-white) 0%, #FFE5B4 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Floating waffle decorations */
+        .waffle-bg {
+            position: fixed;
+            font-size: 80px;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .waffle-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .waffle-2 { top: 60%; right: 15%; animation-delay: 3s; }
+        .waffle-3 { bottom: 20%; left: 20%; animation-delay: 6s; }
+        .waffle-4 { top: 40%; right: 30%; animation-delay: 9s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Header Section */
+        header {
+            position: relative;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, var(--butter-yellow), var(--waffle-brown));
+            border-bottom: 8px solid var(--syrup-purple);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 4em;
+            color: white;
+            text-shadow: 4px 4px 0 var(--syrup-purple), 
+                         8px 8px 0 rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            color: var(--cream-white);
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            margin-bottom: 50px;
+            border: 5px solid var(--butter-yellow);
+            transform: rotate(-1deg);
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) rotate(-1deg); }
+            to { opacity: 1; transform: translateY(0) rotate(-1deg); }
+        }
+
+        .welcome h2 {
+            color: var(--waffle-brown);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .welcome p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Menu Section */
+        .menu {
+            margin-bottom: 50px;
+        }
+
+        .menu h2 {
+            text-align: center;
+            font-size: 3em;
+            color: var(--syrup-purple);
+            margin-bottom: 40px;
+            font-family: 'Patrick Hand', cursive;
+            text-shadow: 3px 3px 0 var(--butter-yellow);
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 4px solid var(--butter-yellow);
+            animation: popIn 0.6s ease-out both;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.7s; }
+        .menu-item:nth-child(2) { animation-delay: 0.85s; }
+        .menu-item:nth-child(3) { animation-delay: 1s; }
+        .menu-item:nth-child(4) { animation-delay: 1.15s; }
+        .menu-item:nth-child(5) { animation-delay: 1.3s; }
+        .menu-item:nth-child(6) { animation-delay: 1.45s; }
+
+        .menu-item.special {
+            border: 4px solid var(--berry-red);
+            background: linear-gradient(135deg, #fff 0%, #ffe0e0 100%);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .menu-item h3 {
+            font-size: 1.8em;
+            color: var(--waffle-brown);
+            margin-bottom: 15px;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .menu-item .emoji {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .menu-item p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .price {
+            display: inline-block;
+            background: var(--mint-green);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: var(--berry-red);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .buy-button:hover {
+            background: var(--syrup-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .buy-button:active {
+            transform: translateY(0);
+        }
+
+        /* Order Section */
+        .order-section {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            margin-bottom: 50px;
+            border: 5px solid var(--mint-green);
+            animation: fadeIn 1s ease-out 1.6s both;
+        }
+
+        .order-section h2 {
+            text-align: center;
+            font-size: 3em;
+            color: var(--mint-green);
+            margin-bottom: 30px;
+            font-family: 'Patrick Hand', cursive;
+            text-shadow: 3px 3px 0 var(--butter-yellow);
+        }
+
+        .order-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .delivery-info {
+            text-align: center;
+            background: linear-gradient(135deg, var(--butter-yellow), var(--waffle-brown));
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .delivery-info .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .delivery-info h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .delivery-info p {
+            font-size: 1.2em;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8em;
+            color: var(--waffle-brown);
+            margin-bottom: 20px;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .phone-button, .whatsapp-button, .sms-button, .instagram-button {
+            display: block;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: 700;
+            padding: 15px 30px;
+            border-radius: 15px;
+            margin: 15px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .phone-button {
+            background: var(--mint-green);
+            color: white;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+        }
+
+        .sms-button {
+            background: var(--syrup-purple);
+            color: white;
+        }
+
+        .instagram-button {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .phone-button:hover, .whatsapp-button:hover, .sms-button:hover, .instagram-button:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .order-note {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--berry-red);
+        }
+
+        .order-note p {
+            font-size: 1.1em;
+            color: #555;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        /* Fun Facts Section */
+        .fun-facts {
+            background: linear-gradient(135deg, var(--berry-red), var(--syrup-purple));
+            color: white;
+            padding: 40px;
+            border-radius: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-out 1.3s both;
+        }
+
+        .fun-facts h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            font-family: 'Patrick Hand', cursive;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            font-size: 1.2em;
+            line-height: 2;
+        }
+
+        .fun-facts li:before {
+            content: "🧇 ";
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--waffle-brown);
+            color: white;
+            font-size: 1.2em;
+            margin-top: 50px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .heart {
+            color: var(--berry-red);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Built-in Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-width: 90vw;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--mint-green), var(--waffle-brown));
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .chat-header:hover {
+            background: linear-gradient(135deg, var(--waffle-brown), var(--mint-green));
+        }
+
+        .chat-body {
+            display: none;
+            max-height: 400px;
+            background: #f8f9fa;
+        }
+
+        .chat-messages {
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .bot-message, .user-message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 15px;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .bot-message {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid var(--mint-green);
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid var(--waffle-brown);
+            text-align: right;
+        }
+
+        .bot-message strong, .user-message strong {
+            color: var(--waffle-brown);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .bot-message p, .user-message p {
+            margin: 0;
+            color: #333;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            background: white;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .chat-name, .chat-phone, .chat-message {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-name:focus, .chat-phone:focus, .chat-message:focus {
+            outline: none;
+            border-color: var(--mint-green);
+        }
+
+        .chat-message {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .send-button {
+            width: 100%;
+            padding: 12px;
+            background: var(--mint-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .send-button:hover {
+            background: var(--waffle-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .send-button:active {
+            transform: translateY(0);
+        }
+
+        /* Order Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--berry-red);
+        }
+
+        .modal h2 {
+            color: var(--waffle-brown);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .modal-waffle-info {
+            background: linear-gradient(135deg, var(--butter-yellow), var(--waffle-brown));
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-waffle-info p {
+            color: white;
+            font-size: 1.3em;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .modal form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal form input:focus {
+            outline: none;
+            border-color: var(--mint-green);
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--mint-green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal-submit:hover {
+            background: var(--waffle-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-note {
+            text-align: center;
+            color: #666;
+            font-size: 1em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating waffle decorations -->
+    <div class="waffle-bg waffle-1">🧇</div>
+    <div class="waffle-bg waffle-2">🧇</div>
+    <div class="waffle-bg waffle-3">🧇</div>
+    <div class="waffle-bg waffle-4">🧇</div>
+
+    <header>
+        <h1>🧇 WAFFLE DAWGS 🧇</h1>
+        <p class="tagline">Where Every Bite is Pure Happiness!</p>
+    </header>
+
+    <div class="container">
+        <section class="welcome">
+            <h2>Welcome to WAFFLE DAWGS!</h2>
+            <p>
+                Yo! Looking for some crispy, delicious waffles at school? You're at the right place! 
+                I make fresh waffles just for fun and to earn some pocket money on the side. 
+                Order your favorite waffle and grab it during breaks - it's that simple! 
+                Whether you want a small snack or go XL, I've got you covered! 🧇🔥
+            </p>
+        </section>
+
+        <section class="menu">
+            <h2>🌟 Our Amazing Menu 🌟</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <span class="emoji">🧇</span>
+                    <h3>Small Waffle</h3>
+                    <p>Perfect size for a quick treat!</p>
+                    <span class="price">₹25</span>
+                    <button class="buy-button" onclick="buyWaffle('Small Waffle', 25)">Buy Now 🛒</button>
+                </div>
+
+                <div class="menu-item">
+                    <span class="emoji">🧇</span>
+                    <h3>Large Waffle</h3>
+                    <p>Our most popular size - golden and delicious!</p>
+                    <span class="price">₹35</span>
+                    <button class="buy-button" onclick="buyWaffle('Large Waffle', 35)">Buy Now 🛒</button>
+                </div>
+
+                <div class="menu-item">
+                    <span class="emoji">🧇</span>
+                    <h3>XL Waffle</h3>
+                    <p>Go big or go home! Extra large waffle</p>
+                    <span class="price">₹40</span>
+                    <button class="buy-button" onclick="buyWaffle('XL Waffle', 40)">Buy Now 🛒</button>
+                </div>
+
+                <div class="menu-item">
+                    <span class="emoji">🍫</span>
+                    <h3>Kinder Joy Waffle</h3>
+                    <p>Loaded with Kinder Joy chocolate goodness!</p>
+                    <span class="price">₹80</span>
+                    <button class="buy-button" onclick="buyWaffle('Kinder Joy Waffle', 80)">Buy Now 🛒</button>
+                </div>
+
+                <div class="menu-item">
+                    <span class="emoji">✨</span>
+                    <h3>Custom Waffle</h3>
+                    <p>Choose your own toppings and make it YOUR way!</p>
+                    <span class="price">₹100</span>
+                    <button class="buy-button" onclick="buyWaffle('Custom Waffle', 100)">Buy Now 🛒</button>
+                </div>
+
+                <div class="menu-item special">
+                    <span class="emoji">🔥</span>
+                    <h3>2 Large Waffles</h3>
+                    <p><strong>SPECIAL DISCOUNT!</strong> Perfect for sharing<br>
+                    <span style="text-decoration: line-through; color: #999;">₹70</span></p>
+                    <span class="price" style="background: var(--berry-red);">₹50 ONLY!</span>
+                    <button class="buy-button" onclick="buyWaffle('2 Large Waffles (DISCOUNT DEAL)', 50)">Buy Now 🛒</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="order-section">
+            <h2>📱 Order Now! 📱</h2>
+            <div class="order-box">
+                <div class="delivery-info">
+                    <span class="emoji">💰</span>
+                    <h3>Cash on Delivery Available!</h3>
+                    <p>Pay when you receive your delicious waffles at your doorstep!</p>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Contact Us to Order:</h3>
+                    <a href="tel:+919840142703" class="phone-button">
+                        📞 Call: +91 98401 42703
+                    </a>
+                    <a href="https://wa.me/919840142703" class="whatsapp-button" target="_blank">
+                        💬 WhatsApp Us
+                    </a>
+                    <a href="sms:+919840142703" class="sms-button">
+                        📱 Send SMS
+                    </a>
+                    <a href="https://instagram.com/mo3noob" class="instagram-button" target="_blank">
+                        📸 Follow on Instagram
+                    </a>
+                </div>
+
+                <div class="order-note">
+                    <p>🏫 <strong>Pick-up Times at School:</strong></p>
+                    <p>1️⃣ Before Prayer Time</p>
+                    <p>2️⃣ Snacks Time</p>
+                    <p>3️⃣ Lunch Time</p>
+                    <p style="margin-top: 15px;">⏰ <strong>IMPORTANT:</strong> Order by 10 PM the day before!</p>
+                    <p>💰 Bring cash when you pick up your waffle tomorrow!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fun-facts">
+            <h2>🎉 Fun Waffle Facts! 🎉</h2>
+            <ul>
+                <li>Waffles were invented over 1,000 years ago!</li>
+                <li>The word "waffle" comes from the Dutch word "wafel"</li>
+                <li>Belgium is famous for its thick, delicious waffles</li>
+                <li>Waffles can be sweet OR savory - you can even put chicken on them!</li>
+                <li>The waffle pattern helps hold all the yummy toppings</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>📦 Pick-up: Before Prayer | Snacks Time | Lunch Time</p>
+        <p>Made with <span class="heart">❤️</span> and lots of butter!</p>
+        <p>⏰ Order before 10 PM for next day - Bring cash!</p>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>🧇 Order Your Waffle!</h2>
+            <div class="modal-waffle-info">
+                <p><strong>Item:</strong> <span id="modalWaffleName"></span></p>
+                <p><strong>Price:</strong> ₹<span id="modalPrice"></span></p>
+            </div>
+            <form onsubmit="event.preventDefault(); submitOrder();">
+                <input type="text" id="customerName" placeholder="Your Name" required>
+                <input type="tel" id="customerPhone" placeholder="Your Phone Number" required>
+                <button type="submit" class="modal-submit">Send Order via WhatsApp 🚀</button>
+            </form>
+            <p class="modal-note">📌 Remember: Order by 10 PM | Bring cash tomorrow!</p>
+        </div>
+    </div>
+
+    <!-- Built-in Chat Widget -->
+    <div id="chatWidget" class="chat-widget">
+        <div class="chat-header" onclick="toggleChat()">
+            <span>💬 Chat with us!</span>
+            <span id="chatToggle">▼</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-messages" id="chatMessages">
+                <div class="bot-message">
+                    <strong>WAFFLE DAWGS</strong>
+                    <p>Hey! 👋 Want to order some delicious waffles? Send us a message!</p>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="nameInput" placeholder="Your Name" class="chat-name">
+                <input type="tel" id="phoneInput" placeholder="Your Phone Number" class="chat-phone">
+                <textarea id="messageInput" placeholder="Type your message here..." class="chat-message"></textarea>
+                <button onclick="sendMessage()" class="send-button">Send 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedWaffle = '';
+        let selectedPrice = 0;
+
+        function buyWaffle(waffleName, price) {
+            selectedWaffle = waffleName;
+            selectedPrice = price;
+            document.getElementById('orderModal').style.display = 'flex';
+            document.getElementById('modalWaffleName').textContent = waffleName;
+            document.getElementById('modalPrice').textContent = price;
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+
+            if (!name || !phone) {
+                alert('Please fill in both name and phone number! 😊');
+                return;
+            }
+
+            // Create WhatsApp message
+            const message = `🧇 *NEW ORDER!*%0A%0A*Customer:* ${name}%0A*Phone:* ${phone}%0A*Order:* ${selectedWaffle}%0A*Price:* ₹${selectedPrice}%0A%0A_Remember: Order by 10 PM for next day pickup!_`;
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/919840142703?text=${message}`, '_blank');
+            
+            // Show confirmation and close modal
+            alert(`Thanks ${name}! 🧇\n\nYour order for ${selectedWaffle} (₹${selectedPrice}) is being sent to WhatsApp!\n\nRemember:\n✅ Order by 10 PM\n✅ Bring ₹${selectedPrice} cash tomorrow\n✅ Pick up at school!`);
+            
+            closeModal();
+        }
+
+        function toggleChat() {
+            const chatBody = document.getElementById('chatBody');
+            const chatToggle = document.getElementById('chatToggle');
+            if (chatBody.style.display === 'none' || chatBody.style.display === '') {
+                chatBody.style.display = 'block';
+                chatToggle.textContent = '▲';
+            } else {
+                chatBody.style.display = 'none';
+                chatToggle.textContent = '▼';
+            }
+        }
+
+        function sendMessage() {
+            const name = document.getElementById('nameInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const message = document.getElementById('messageInput').value;
+
+            if (!name || !phone || !message) {
+                alert('Please fill in all fields! 😊');
+                return;
+            }
+
+            // Display user message in chat
+            const chatMessages = document.getElementById('chatMessages');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'user-message';
+            userMsg.innerHTML = `<strong>You</strong><p>${message}</p>`;
+            chatMessages.appendChild(userMsg);
+
+            // Create WhatsApp message
+            const whatsappText = `Hi! I'm ${name}%0APhone: ${phone}%0AMessage: ${message}`;
+            const whatsappURL = `https://wa.me/919840142703?text=${whatsappText}`;
+            
+            // Show confirmation
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bot-message';
+                botMsg.innerHTML = `<strong>WAFFLE DAWGS</strong><p>Thanks ${name}! Opening WhatsApp now... 🧇</p>`;
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Open WhatsApp after 1 second
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                }, 1000);
+            }, 500);
+
+            // Clear inputs
+            document.getElementById('nameInput').value = '';
+            document.getElementById('phoneInput').value = '';
+            document.getElementById('messageInput').value = '';
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Allow Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
