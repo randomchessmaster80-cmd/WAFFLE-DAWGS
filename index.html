@@ -1123,18 +1123,204 @@
         let selectedFlavour = '';
         let waffleType = '';
 
+        let customBase = '';
+        let customTopping = '';
+        let kinderJoyExtras = [];
+
         function buyWaffle(waffleName, price) {
             selectedWaffle = waffleName;
             selectedPrice = price;
             waffleType = waffleName;
             
+            // Reset custom selections
+            customBase = '';
+            customTopping = '';
+            kinderJoyExtras = [];
+            
             if (waffleName === 'Kinder Joy Waffle') {
                 showKinderJoyChoice();
             } else if (waffleName === 'Custom Waffle') {
-                showFlavourSelection('custom');
+                showCustomBase();
             } else {
                 showFlavourSelection('regular');
             }
+        }
+
+        function showCustomBase() {
+            const flavourModal = document.getElementById('flavourModal');
+            const flavourTitle = document.getElementById('flavourTitle');
+            const flavourOptions = document.getElementById('flavourOptions');
+            
+            flavourTitle.textContent = '🧇 Step 1: Choose Your Base';
+            
+            flavourOptions.innerHTML = `
+                <button onclick="selectCustomBase('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
+                <button onclick="selectCustomBase('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
+                <button onclick="selectCustomBase('Custom')" class="flavour-btn">🎨 Custom (Your Idea)</button>
+            `;
+            
+            flavourModal.style.display = 'flex';
+        }
+
+        function selectCustomBase(base) {
+            if (base === 'Custom') {
+                customBase = 'Custom Mix';
+                showCustomMixSelection();
+            } else {
+                customBase = base;
+                showCustomTopping();
+            }
+        }
+
+        function showCustomMixSelection() {
+            const flavourTitle = document.getElementById('flavourTitle');
+            const flavourOptions = document.getElementById('flavourOptions');
+            
+            flavourTitle.textContent = '🎨 Pick 3 Items for Your Custom Mix!';
+            
+            flavourOptions.innerHTML = `
+                <p style="margin-bottom: 15px; color: #555; font-size: 0.95em;">Select any 3 items:</p>
+                <div id="customMixContainer">
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Mixed Chocolate" onchange="updateCustomMix(this)" style="margin-right: 10px;">
+                        🍫 Mixed Chocolate
+                    </label>
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Vanilla" onchange="updateCustomMix(this)" style="margin-right: 10px;">
+                        🍦 Vanilla
+                    </label>
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="White Chocolate" onchange="updateCustomMix(this)" style="margin-right: 10px;">
+                        🤍 White Chocolate
+                    </label>
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Special Choco" onchange="updateCustomMix(this)" style="margin-right: 10px;">
+                        ⭐ Special Choco
+                    </label>
+                </div>
+                <button onclick="submitCustomMix()" class="flavour-btn" style="margin-top: 15px; width: 100%;">
+                    Continue ➡️
+                </button>
+            `;
+        }
+
+        let customMixItems = [];
+
+        function updateCustomMix(checkbox) {
+            if (checkbox.checked) {
+                if (customMixItems.length >= 3) {
+                    checkbox.checked = false;
+                    alert('You can only select 3 items! 😊');
+                    return;
+                }
+                customMixItems.push(checkbox.value);
+            } else {
+                customMixItems = customMixItems.filter(item => item !== checkbox.value);
+            }
+        }
+
+        function submitCustomMix() {
+            if (customMixItems.length !== 3) {
+                alert('Please select exactly 3 items! 😊');
+                return;
+            }
+            
+            selectedFlavour = `Custom Mix: ${customMixItems.join(' + ')}`;
+            customMixItems = []; // Reset for next order
+            document.getElementById('flavourModal').style.display = 'none';
+            showOrderForm();
+        }
+
+        function showCustomTopping() {
+            const flavourTitle = document.getElementById('flavourTitle');
+            const flavourOptions = document.getElementById('flavourOptions');
+            
+            flavourTitle.textContent = '🍫 Step 2: Choose Your Topping';
+            
+            flavourOptions.innerHTML = `
+                <button onclick="selectCustomTopping('Kinder Joy')" class="flavour-btn">🎁 Kinder Joy</button>
+                <button onclick="selectCustomTopping('Snickers')" class="flavour-btn">🍫 Snickers</button>
+                <button onclick="selectCustomTopping('Dairy Milk')" class="flavour-btn">🍫 Dairy Milk</button>
+                <button onclick="selectCustomTopping('Milk Chocolate')" class="flavour-btn">🍫 Milk Chocolate</button>
+                <button onclick="selectCustomTopping('Mixed Chocolate')" class="flavour-btn">🍫 Mixed Chocolate</button>
+            `;
+        }
+
+        function selectCustomTopping(topping) {
+            if (topping === 'Kinder Joy') {
+                customTopping = 'Kinder Joy';
+                showKinderJoyExtras();
+            } else {
+                customTopping = topping;
+                finalizeCustomWaffle();
+            }
+        }
+
+        function showKinderJoyExtras() {
+            const flavourTitle = document.getElementById('flavourTitle');
+            const flavourOptions = document.getElementById('flavourOptions');
+            
+            flavourTitle.textContent = '🎁 Kinder Joy + Pick 2 More!';
+            
+            flavourOptions.innerHTML = `
+                <p style="margin-bottom: 15px; color: #555; font-size: 0.95em;">Select 2 additional toppings:</p>
+                <div id="kinderExtrasContainer">
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Snickers" onchange="updateKinderExtras(this)" style="margin-right: 10px;">
+                        🍫 Snickers
+                    </label>
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Dairy Milk" onchange="updateKinderExtras(this)" style="margin-right: 10px;">
+                        🍫 Dairy Milk
+                    </label>
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Milk Chocolate" onchange="updateKinderExtras(this)" style="margin-right: 10px;">
+                        🍫 Milk Chocolate
+                    </label>
+                    <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
+                        <input type="checkbox" value="Mixed Chocolate" onchange="updateKinderExtras(this)" style="margin-right: 10px;">
+                        🍫 Mixed Chocolate
+                    </label>
+                </div>
+                <button onclick="submitKinderExtras()" class="flavour-btn" style="margin-top: 15px; width: 100%;">
+                    Continue ➡️
+                </button>
+            `;
+        }
+
+        function updateKinderExtras(checkbox) {
+            if (checkbox.checked) {
+                if (kinderJoyExtras.length >= 2) {
+                    checkbox.checked = false;
+                    alert('You can only select 2 additional toppings! 😊');
+                    return;
+                }
+                kinderJoyExtras.push(checkbox.value);
+            } else {
+                kinderJoyExtras = kinderJoyExtras.filter(item => item !== checkbox.value);
+            }
+        }
+
+        function submitKinderExtras() {
+            if (kinderJoyExtras.length !== 2) {
+                alert('Please select exactly 2 additional toppings! 😊');
+                return;
+            }
+            finalizeCustomWaffle();
+        }
+
+        function finalizeCustomWaffle() {
+            let flavourDescription = `${customBase}`;
+            
+            if (customTopping === 'Kinder Joy') {
+                flavourDescription += ` | Kinder Joy + ${kinderJoyExtras.join(' + ')}`;
+            } else {
+                flavourDescription += ` | ${customTopping}`;
+            }
+            
+            selectedFlavour = flavourDescription;
+            document.getElementById('flavourModal').style.display = 'none';
+            showOrderForm();
         }
 
         function showKinderJoyChoice() {
@@ -1182,14 +1368,8 @@
                     <button onclick="selectKinderFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
                     <button onclick="selectKinderFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
                 `;
-            } else if (type === 'custom') {
-                flavourTitle.textContent = `Choose Your Flavour for ${selectedWaffle}:`;
-                flavourOptions.innerHTML = `
-                    <button onclick="selectFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
-                    <button onclick="selectFlavour('Chocolate')" class="flavour-btn">🍫 Chocolate</button>
-                    <button onclick="selectFlavour('Kinder Joy')" class="flavour-btn">🎁 Kinder Joy</button>
-                `;
             } else {
+                // Regular waffles (Small, Large, XL, 2 Large)
                 flavourTitle.textContent = `Choose Your Flavour for ${selectedWaffle}:`;
                 flavourOptions.innerHTML = `
                     <button onclick="selectFlavour('Vanilla')" class="flavour-btn">🍦 Vanilla</button>
