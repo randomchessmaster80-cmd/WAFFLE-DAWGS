@@ -1260,10 +1260,10 @@
             const flavourTitle = document.getElementById('flavourTitle');
             const flavourOptions = document.getElementById('flavourOptions');
             
-            flavourTitle.textContent = '🎁 Kinder Joy + Pick 2 More!';
+            flavourTitle.textContent = '🎁 Kinder Joy + Pick More Toppings!';
             
             flavourOptions.innerHTML = `
-                <p style="margin-bottom: 15px; color: #555; font-size: 0.95em;">Select 2 additional toppings:</p>
+                <p style="margin-bottom: 15px; color: #555; font-size: 0.95em;">Select 1-3 additional toppings:</p>
                 <div id="kinderExtrasContainer">
                     <label style="display: block; padding: 12px; margin: 8px 0; background: white; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; font-size: 1em;">
                         <input type="checkbox" value="Snickers" onchange="updateKinderExtras(this)" style="margin-right: 10px;">
@@ -1290,9 +1290,9 @@
 
         function updateKinderExtras(checkbox) {
             if (checkbox.checked) {
-                if (kinderJoyExtras.length >= 2) {
+                if (kinderJoyExtras.length >= 3) {
                     checkbox.checked = false;
-                    alert('You can only select 2 additional toppings! 😊');
+                    alert('You can select maximum 3 toppings! 😊');
                     return;
                 }
                 kinderJoyExtras.push(checkbox.value);
@@ -1302,8 +1302,12 @@
         }
 
         function submitKinderExtras() {
-            if (kinderJoyExtras.length !== 2) {
-                alert('Please select exactly 2 additional toppings! 😊');
+            if (kinderJoyExtras.length === 0) {
+                alert('Please select at least 1 topping! 😊');
+                return;
+            }
+            if (kinderJoyExtras.length > 3) {
+                alert('You can select maximum 3 toppings! 😊');
                 return;
             }
             finalizeCustomWaffle();
